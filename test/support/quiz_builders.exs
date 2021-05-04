@@ -36,7 +36,7 @@ defmodule Test.Support.QuizBuilders do
   def double_digits(), do: Enum.to_list(10..99)
   def single_digits(), do: Enum.to_list(0..9)
 
-  def addition_checker(substitutions, answer) ​do​
+  def addition_checker(substitutions, answer) do
     left = Keyword.fetch!(substitutions, :left)
     right = Keyword.fetch!(substitutions, :right)
     to_string(left + right) == String.trim(answer)
@@ -49,8 +49,6 @@ defmodule Test.Support.QuizBuilders do
   def build_quiz(quiz_overrides \\ []) do
     quiz_overrides
     |> quiz_fields
-    |> Quiz.new
+    |> Quiz.new()
   end
-
-
 end
