@@ -1,4 +1,7 @@
 defmodule Mastery.Core.Quiz do
+  @moduledoc """
+  Functions for Quiz
+  """
   alias Mastery.Core.{Template, Question, Response}
 
   defstruct title: nil,
@@ -113,7 +116,7 @@ defmodule Mastery.Core.Quiz do
   end
 
   def save_response(quiz, response) do
-    Map.put(quiz, :last_response)
+    Map.put(quiz, :last_response, response)
   end
 
   def mastered?(quiz) do
