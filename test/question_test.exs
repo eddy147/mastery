@@ -27,7 +27,6 @@ defmodule QuestionTest do
 
     assert eventually_match(generators, 1)
     assert eventually_match(generators, 9)
-
   end
 
   def eventually_match(generators, answer) do

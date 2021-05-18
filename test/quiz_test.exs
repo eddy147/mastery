@@ -1,10 +1,14 @@
 defmodule QuizTest do
   use ExUnit.Case
-  use QuiBuilders
+  use QuizBuilders
 
-  alias Mastery.Core.Quiz
+  alias Mastery.Core.{Quiz, Response}
 
+  describe "when a quiz has two templates" do
+    setup[:quiz]
 
+    end
+  end
 
   defp eventuall_pick_other_template(quiz, template) do
     Stream.repeatedly(fn ->
@@ -18,6 +22,35 @@ defmodule QuizTest do
   end
 
   defp answer_question(quiz, answer) do
-
+    email = "some_email@xyz.bb"
+    response = Response.new(quiz, email, answer)
+    Quiz.answer_question(quiz, response)
   end
+
+  defp right_answer(quiz), do: answer_question(quiz, "3")
+  defp wrong_answer(quiz), do: answer_question(quiz, "wrong")
+
+  defp quiz(context) do
+    {:ok, Map.put(context, :quiz, build_quiz_with_two_templates())}
+  end
+
+  defp quiz_always_adds_one_and_two(context) do
+    fields = template_fields(generators: addition_generators([1], [2]))
+
+    quiz = build_quiz(mastery: 2)
+    |> Quiz.add_template(fields)
+
+    {:ok, Map.put(context, :quiz, quiz)}
+  end
+
+  defp assert_more_questions(quiz) do
+    refute is_nil(quiz)
+    quiz
+  end
+
+  defp refute_more_questions(quiz) do
+    assert is_nil(quiz)
+    quiz
+  end
+
 end
