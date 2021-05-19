@@ -1,7 +1,8 @@
 {
     "editor.fontWeight": "300",
     "editor.renderWhitespace": "all",
-    "editor.fontFamily": "Cascadia Code,Cascadia Mono,IBM Plex Mono,Meslo LG S DZ for Powerline,Go Mono for Powerline,Droid Sans Mono Dotted for Powerline,Cousine for Powerline,Cascadia Mono,Ubuntu Mono,Source Code Pro For Powerline,Sudo,Consolas,Anonymous Pro,Lucida Console, 'Courier New',Ubuntu Mono,Cousine",
+    "editor.fontFamily": "Bitstream Vera Sans Mono,Cascadia Code,Cascadia Mono,IBM Plex Mono,Meslo LG S DZ for Powerline,Go Mono for Powerline,Droid Sans Mono Dotted for Powerline,Cousine for Powerline,Cascadia Mono,Ubuntu Mono,Source Code Pro For Powerline,Sudo,Consolas,Anonymous Pro,Lucida Console, 'Courier New',Ubuntu Mono,Cousine,Input Mono",
     "terminal.integrated.fontWeight": "normal",
-    "editor.fontSize": 15
+    "editor.fontSize": 13,
+    "workbench.sideBar.location": "left"
 }

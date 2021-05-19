@@ -1,16 +1,47 @@
-defmodule QuizTest do
+defmodule Test.Support.QuizTest do
+  @moduledoc """
+  Tests for Quiz
+  """
   use ExUnit.Case
-  use QuizBuilders
+  use Test.Support.QuizBuilders
 
   alias Mastery.Core.{Quiz, Response}
 
-  describe "when a quiz has two templates" do
-    setup[:quiz]
+  doctest Quiz
 
+  describe "when a quiz has two templates" do
+    setup [:quiz]
+
+    test "next question is randomly selected", %{quiz: quiz} do
+      %{current_question: %{template: first_template}} = Quiz.select_question(quiz)
+      other_template = eventually_pick_other_template(quiz, first_template)
+      assert first_template != other_template
     end
   end
 
-  defp eventuall_pick_other_template(quiz, template) do
+  describe "a quiz that always adds one and two" do
+    setup [:quiz_always_adds_one_and_two]
+
+    test "a wrong answer resets mastery", %{quiz: quiz} do
+      quiz
+      |> Quiz.select_question()
+      |> assert_more_questions
+      |> right_answer
+      |> Quiz.select_question()
+      |> assert_more_questions
+      |> wrong_answer
+      |> Quiz.select_question()
+      |> assert_more_questions
+      |> right_answer
+      |> Quiz.select_question()
+      |> assert_more_questions
+      |> right_answer
+      |> Quiz.select_question()
+      |> refute_more_questions
+    end
+  end
+
+  defp eventually_pick_other_template(quiz, template) do
     Stream.repeatedly(fn ->
       Quiz.select_question(quiz).current_question.template
     end)
@@ -37,8 +68,9 @@ defmodule QuizTest do
   defp quiz_always_adds_one_and_two(context) do
     fields = template_fields(generators: addition_generators([1], [2]))
 
-    quiz = build_quiz(mastery: 2)
-    |> Quiz.add_template(fields)
+    quiz =
+      build_quiz(mastery: 2)
+      |> Quiz.add_template(fields)
 
     {:ok, Map.put(context, :quiz, quiz)}
   end
@@ -52,5 +84,4 @@ defmodule QuizTest do
     assert is_nil(quiz)
     quiz
   end
-
 end

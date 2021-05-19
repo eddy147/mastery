@@ -1,6 +1,6 @@
 defmodule QuestionTest do
   use ExUnit.Case
-  use QuizBuilders
+  use Test.Support.QuizBuilders
 
   alias Mastery.Core.Question
 

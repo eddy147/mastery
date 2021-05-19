@@ -3,7 +3,7 @@ defmodule Test.Mastery.Core.TemplateTest do
   Testing functions from Template
   """
   use ExUnit.Case
-  use QuizBuilders
+  use Test.Support.QuizBuilders
 
   alias Mastery.Core.Template
   alias Mastery.Core.Response

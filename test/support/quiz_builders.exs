@@ -1,11 +1,11 @@
-defmodule QuizBuilders do
+defmodule Test.Support.QuizBuilders do
   @moduledoc """
   Fixtures!
   """
   defmacro __using__(_options) do
     quote do
       alias Mastery.Core.{Template, Response, Quiz}
-      import QuizBuilders, only: :functions
+      import Test.Support.QuizBuilders, only: :functions
     end
   end
 

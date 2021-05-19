@@ -100,6 +100,8 @@ defmodule Mastery.Core.Quiz do
     }
   end
 
+  defp reset_template_cycle(quiz), do: quiz
+
   def answer_question(quiz, %Response{correct: true} = response) do
     new_quiz =
       quiz
