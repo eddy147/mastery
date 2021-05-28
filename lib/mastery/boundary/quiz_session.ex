@@ -11,7 +11,7 @@ defmodule Mastery.Boundary.QuizSession do
   end
 
   def answer_question(session, answer) do
-    GenServer.call(session, :answer_question, answer)
+    GenServer.call(session, {:answer_question, answer})
   end
 
   # Server side
