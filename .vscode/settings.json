@@ -1,8 +1,0 @@
-{
-    "editor.fontWeight": "300",
-    "editor.renderWhitespace": "all",
-    "editor.fontFamily": "Cascadia Mono,IBM Plex Mono,Go Mono for Powerline,Droid Sans Mono Dotted for Powerline,Cousine for Powerline,Cascadia Mono,Ubuntu Mono,Source Code Pro For Powerline,Sudo,Consolas,Anonymous Pro,Lucida Console, 'Courier New',Ubuntu Mono,Cousine,Input Mono",
-    "terminal.integrated.fontWeight": "normal",
-    "workbench.sideBar.location": "left",
-    "editor.fontSize": 15
-}
