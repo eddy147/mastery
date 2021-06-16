@@ -1,7 +1,4 @@
 defmodule Mastery.Core.Template do
-  @moduledoc """
-  A Template has certain Questions
-  """
   defstruct ~w[name category instructions raw compiled generators checker]a
 
   def new(fields) do

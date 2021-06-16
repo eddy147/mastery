@@ -1,11 +1,8 @@
-defmodule Test.Support.QuizBuilders do
-  @moduledoc """
-  Fixtures!
-  """
+defmodule QuizBuilders do
   defmacro __using__(_options) do
     quote do
       alias Mastery.Core.{Template, Response, Quiz}
-      import Test.Support.QuizBuilders, only: :functions
+      import QuizBuilders, only: :functions
     end
   end
 
@@ -36,8 +33,13 @@ defmodule Test.Support.QuizBuilders do
     %{left: left, right: right || left}
   end
 
-  def double_digits(), do: Enum.to_list(10..99)
-  def single_digits(), do: Enum.to_list(0..9)
+  def double_digits() do
+    Enum.to_list(10..99)
+  end
+
+  def single_digits() do
+    Enum.to_list(0..9)
+  end
 
   def addition_checker(substitutions, answer) do
     left = Keyword.fetch!(substitutions, :left)
@@ -57,7 +59,7 @@ defmodule Test.Support.QuizBuilders do
 
   def build_question(overrides \\ []) do
     overrides
-    |> template_fields()
+    |> template_fields
     |> Template.new()
     |> Question.new()
   end

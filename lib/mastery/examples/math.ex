@@ -1,5 +1,4 @@
 defmodule Mastery.Examples.Math do
-  @moduledoc false
   alias Mastery.Core.Quiz
 
   def template_fields() do
@@ -13,9 +12,9 @@ defmodule Mastery.Examples.Math do
     ]
   end
 
-  def addition_checker(substitions, answer) do
-    left = Keyword.fetch!(substitions, :left)
-    right = Keyword.fetch!(substitions, :right)
+  def addition_checker(substitutions, answer) do
+    left = Keyword.fetch!(substitutions, :left)
+    right = Keyword.fetch!(substitutions, :right)
     to_string(left + right) == String.trim(answer)
   end
 
@@ -33,11 +32,3 @@ defmodule Mastery.Examples.Math do
     |> Quiz.add_template(template_fields())
   end
 end
-
-# iex -S mix
-# alias Mastery.Examples.Math
-# alias Mastery.Boundary.QuizManager
-# GenServer.start_link QuizManager, %{},  name: QuizManager
-# QuizManager.build_quiz  title::quiz
-# QuizManager.add_template  :quiz, Math.template_fields
-# QuizManager.lookup_quiz_by_title  :quiz

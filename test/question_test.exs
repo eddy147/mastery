@@ -1,19 +1,15 @@
 defmodule QuestionTest do
   use ExUnit.Case
-  use Test.Support.QuizBuilders
-
-  alias Mastery.Core.Question
+  use QuizBuilders
 
   test "building chooses substitutions" do
     question = build_question(generators: addition_generators([1], [2]))
-
     assert question.substitutions == [left: 1, right: 2]
   end
 
   test "function generators are called" do
     generators = addition_generators(fn -> 42 end, [0])
     substitutions = build_question(generators: generators).substitutions
-
     assert Keyword.fetch!(substitutions, :left) == generators.left.()
   end
 
@@ -24,17 +20,16 @@ defmodule QuestionTest do
 
   test "a random choice is made from list generators" do
     generators = addition_generators(Enum.to_list(1..9), [0])
-
     assert eventually_match(generators, 1)
     assert eventually_match(generators, 9)
   end
 
-  def eventually_match(generators, answer) do
+  def eventually_match(generators, number) do
     Stream.repeatedly(fn ->
       build_question(generators: generators).substitutions
     end)
     |> Enum.find(fn substitution ->
-      Keyword.fetch!(substitution, :left) == answer
+      Keyword.fetch!(substitution, :left) == number
     end)
   end
 end

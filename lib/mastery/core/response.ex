@@ -1,7 +1,4 @@
 defmodule Mastery.Core.Response do
-  @moduledoc """
-  Functions to handle a Response to Question
-  """
   defstruct ~w[quiz_title template_name to email answer correct timestamp]a
 
   def new(quiz, email, answer) do

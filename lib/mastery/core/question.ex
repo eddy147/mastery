@@ -1,7 +1,4 @@
 defmodule Mastery.Core.Question do
-  @moduledoc """
-  Functions for Question
-  """
   alias Mastery.Core.Template
 
   defstruct ~w[asked substitutions template]a
